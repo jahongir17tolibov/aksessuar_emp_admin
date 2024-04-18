@@ -1,0 +1,46 @@
+{
+  "project_info": {
+    "project_number": "133268794215",
+    "project_id": "aksessuar-employ",
+    "storage_bucket": "aksessuar-employ.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:133268794215:android:fabc423a067f318492ddc2",
+        "android_client_info": {
+          "package_name": "com.jtolibov.aksessuar_emp_admin"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "133268794215-1i4plb8j2tqe8v8gqpbnnhoad5jimk2e.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCiGVDOXfQWKqOMoOSfbWoP3NS0vKmwxgU"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "133268794215-1i4plb8j2tqe8v8gqpbnnhoad5jimk2e.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "133268794215-hqiv1ar7s821sqvae6bvgpj7o7d16gvr.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.jtolibov.aksessuarEmpAdmin"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
