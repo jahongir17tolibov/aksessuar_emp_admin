@@ -6,12 +6,12 @@ import 'package:aksessuar_emp_admin/feature/home/presentation/home_screen.dart';
 import 'package:aksessuar_emp_admin/utils/constants.dart';
 import 'package:aksessuar_emp_admin/utils/designing_system/components/auth_button.dart';
 import 'package:aksessuar_emp_admin/utils/designing_system/components/email_cupertino_textfield.dart';
+import 'package:aksessuar_emp_admin/utils/designing_system/components/error_widget.dart';
 import 'package:aksessuar_emp_admin/utils/designing_system/components/google_button.dart';
 import 'package:aksessuar_emp_admin/utils/designing_system/components/google_font.dart';
 import 'package:aksessuar_emp_admin/utils/designing_system/components/password_cupertino_textfield.dart';
 import 'package:aksessuar_emp_admin/utils/designing_system/components/show_snack_bar.dart';
 import 'package:aksessuar_emp_admin/utils/designing_system/components/size_util.dart';
-import 'package:aksessuar_emp_admin/utils/designing_system/components/error_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -159,7 +159,10 @@ class _LoginScreenState extends State<LoginScreen> {
             if (state.status == LoginStatus.showMessage) {
               showSnackBar(state.messageForSnackBar!, context);
             } else if (state.status == LoginStatus.isAuthenticated) {
-              await HomeScreen.open(context);
+              Future.delayed(const Duration(seconds: 1)).then((_) async {
+                await HomeScreen.open(context);
+              });
+              ;
             }
           },
         ),

@@ -5,7 +5,6 @@ import 'package:aksessuar_emp_admin/utils/designing_system/components/size_util.
 import 'package:aksessuar_emp_admin/utils/designing_system/components/text_view.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 
 class SignOutCupertinoAlertDialog extends StatelessWidget {
   const SignOutCupertinoAlertDialog({super.key, this.userModel, required this.onClickAccept});
@@ -15,7 +14,7 @@ class SignOutCupertinoAlertDialog extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    debugPrint('userName: ${userModel?.userName}');
+    final userName = userModel!.userName ?? '';
     return CupertinoAlertDialog(
       title: TextView(
         text: 'Siz rostdan ham tizimdan chiqib ketmoqchimisiz?',
@@ -50,8 +49,7 @@ class SignOutCupertinoAlertDialog extends StatelessWidget {
               textOverflow: TextOverflow.ellipsis,
             ),
             TextView(
-              text:
-                  'name: ${(userModel!.userName!.isNotEmpty) ? userModel?.userName : 'Mavjud emas(('}',
+              text: 'name: ${(userName.isNotEmpty) ? userModel?.userName : 'Mavjud emas(('}',
               textColor: Theme.of(context).colorScheme.onBackground,
               textSize: 14.textSize(context),
               maxLines: 1,
