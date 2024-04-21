@@ -5,5 +5,5 @@ abstract interface class BaseUseCase<OUTPUT> {
 }
 
 abstract interface class BaseUseCaseWithParams<INPUT, OUTPUT> {
-  Future<OUTPUT> execute(INPUT params);
+  Future<OUTPUT> execute(INPUT input);
 }

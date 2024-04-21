@@ -67,6 +67,7 @@ class DefaultFirebaseOptions {
     messagingSenderId: '133268794215',
     projectId: 'aksessuar-employ',
     storageBucket: 'aksessuar-employ.appspot.com',
+    androidClientId: '133268794215-p5pmss46hbfeo21an4du0kba4las72bv.apps.googleusercontent.com',
     iosClientId: '133268794215-hqiv1ar7s821sqvae6bvgpj7o7d16gvr.apps.googleusercontent.com',
     iosBundleId: 'com.jtolibov.aksessuarEmpAdmin',
   );

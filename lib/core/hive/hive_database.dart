@@ -1,4 +1,3 @@
-import 'package:aksessuar_emp_admin/feature/auth/data/local/entity/admin_entity.dart';
 import 'package:aksessuar_emp_admin/utils/constants.dart';
 import 'package:hive/hive.dart';
 import 'package:path/path.dart';
@@ -6,13 +5,9 @@ import 'package:path_provider/path_provider.dart';
 
 class HiveDatabase {
   static Future<void> initHiveFlutter() async {
-    Hive
-      ..init(await _getAppDatabasePath())
-      ..registerAdapter(AdminEntityAdapter());
+    Hive.init(await _getAppDatabasePath());
+    await Hive.openBox(HiveConstants.userStorageBox);
   }
-
-  static Future<Box<AdminEntity>> getAdminBox() =>
-      Hive.openBox<AdminEntity>(HiveConstants.cachedAdminDataBox);
 
   static Future<BoxCollection> initHiveDatabase() async {
     const boxes = {

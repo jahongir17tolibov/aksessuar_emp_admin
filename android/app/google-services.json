@@ -14,6 +14,14 @@
       },
       "oauth_client": [
         {
+          "client_id": "133268794215-p5pmss46hbfeo21an4du0kba4las72bv.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.jtolibov.aksessuar_emp_admin",
+            "certificate_hash": "9f47f91563e1de73276c5d9f9d4dcd02ca8ca433"
+          }
+        },
+        {
           "client_id": "133268794215-1i4plb8j2tqe8v8gqpbnnhoad5jimk2e.apps.googleusercontent.com",
           "client_type": 3
         }
