@@ -92,11 +92,12 @@ class _HomeScreenState extends State<HomeScreen> {
                             mainAxisAlignment: MainAxisAlignment.center,
                             children: <Widget>[
                               SizedBox(
-                                width: 0.35.screenWidth(context),
-                                height: 0.35.screenHeight(context),
+                                width: 0.32.screenWidth(context),
+                                height: 0.32.screenHeight(context),
                                 child: PieChart(
-                                  swapAnimationDuration: const Duration(milliseconds: 800),
+                                  swapAnimationDuration: const Duration(milliseconds: 1000),
                                   PieChartData(
+                                    centerSpaceRadius: 80,
                                     sections: [
                                       ...List.generate(state.usersOrderList!.length, (index) {
                                         final calculateAmountPerc =

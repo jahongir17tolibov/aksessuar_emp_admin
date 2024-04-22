@@ -12,7 +12,6 @@ import 'package:equatable/equatable.dart';
 import 'package:flutter/cupertino.dart';
 
 part 'login_event.dart';
-
 part 'login_state.dart';
 
 class LoginBloc extends Bloc<LoginEvent, LoginState> {
@@ -27,6 +26,8 @@ class LoginBloc extends Bloc<LoginEvent, LoginState> {
     on<LoginOnClickLoginBtnEvent>(_onClickLoginBtnEvent);
 
     on<LoginOnClickGoogleBtnEvent>(_onClickGoogleBtnEvent);
+
+    on<LoginOnReloadingStatesEvent>(_onReloadingStatesEvent);
   }
 
   final LoginUserByEmailUseCase loginUserByEmailUseCase;
@@ -36,7 +37,6 @@ class LoginBloc extends Bloc<LoginEvent, LoginState> {
 
   final TextEditingController emailEditingController = TextEditingController();
   final TextEditingController passwordEditingController = TextEditingController();
-  bool checkEditingIsNotEmpty = false;
 
   FutureOr<void> _onAuthenticationStateEvent(
     LoginOnAuthenticationEvent event,
@@ -67,7 +67,7 @@ class LoginBloc extends Bloc<LoginEvent, LoginState> {
 
             String? errorMsg = result.errorMessage;
             if (result.errorMessage != null) {
-              emit(state.copyWith(status: LoginStatus.onError, error: errorMsg!));
+              _showSnackMsg(errorMsg!, emit: emit);
             }
           });
         } else {
@@ -78,7 +78,7 @@ class LoginBloc extends Bloc<LoginEvent, LoginState> {
         _showSnackMsg('Incorrect email format', emit: emit);
       }
     } catch (e) {
-      emit(state.copyWith(status: LoginStatus.onError, error: e.toString()));
+      _showSnackMsg('Sign in, failed try again', emit: emit);
     }
   }
 
@@ -96,13 +96,8 @@ class LoginBloc extends Bloc<LoginEvent, LoginState> {
         }
       });
     } catch (e) {
-      emit(state.copyWith(status: LoginStatus.onError, error: e.toString()));
+      _showSnackMsg(e.toString(), emit: emit);
     }
-  }
-
-  void _listenEditingControllers() {
-    checkEditingIsNotEmpty =
-        emailEditingController.text.isNotEmpty && passwordEditingController.text.isNotEmpty;
   }
 
   @override
@@ -116,6 +111,7 @@ class LoginBloc extends Bloc<LoginEvent, LoginState> {
     emit(state.copyWith(
       status: LoginStatus.showMessage,
       messageForSnackBar: msg,
+      isLoading: false,
     ));
     emit(state.copyWith(status: LoginStatus.initial));
   }
@@ -134,5 +130,12 @@ class LoginBloc extends Bloc<LoginEvent, LoginState> {
         emit(state.copyWith(status: LoginStatus.isAuthenticated));
       });
     }
+  }
+
+  FutureOr<void> _onReloadingStatesEvent(
+    LoginOnReloadingStatesEvent event,
+    Emitter<LoginState> emit,
+  ) {
+    emit(state.copyWith(status: LoginStatus.initial, error: null));
   }
 }

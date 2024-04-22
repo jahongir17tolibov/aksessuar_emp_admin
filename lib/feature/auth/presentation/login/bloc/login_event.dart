@@ -7,3 +7,5 @@ class LoginOnAuthenticationEvent extends LoginEvent {}
 class LoginOnClickGoogleBtnEvent extends LoginEvent {}
 
 class LoginOnClickLoginBtnEvent extends LoginEvent {}
+
+class LoginOnReloadingStatesEvent extends LoginEvent {}

@@ -21,7 +21,7 @@ import 'widget/auth_linear_gradient_bckg.dart';
 class LoginScreen extends StatefulWidget {
   const LoginScreen({super.key});
 
-  static const String routeName = '/login';
+  static const String routeName = '/a';
 
   static Future<void> open(BuildContext context) async {
     await Navigator.of(context).pushNamedAndRemoveUntil(routeName, (route) => false);
@@ -148,7 +148,12 @@ class _LoginScreenState extends State<LoginScreen> {
                 ],
               );
             } else if (state.status == LoginStatus.onError) {
-              return OnErrorWidget(errorText: state.error!);
+              return OnErrorWidget(
+                errorText: state.error!,
+                onClick: () {
+                  context.read<LoginBloc>().add(LoginOnReloadingStatesEvent());
+                },
+              );
             }
             return Container();
           },

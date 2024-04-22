@@ -51,7 +51,7 @@ class RegisterBloc extends Bloc<RegisterEvent, RegisterState> {
 
               String? errorMsg = result.errorMessage;
               if (result.errorMessage != null) {
-                emit(state.copyWith(status: RegisterStatus.onError, error: errorMsg!));
+                _showSnackMsg(errorMsg!, emit: emit);
               }
             });
           } else {
@@ -66,7 +66,7 @@ class RegisterBloc extends Bloc<RegisterEvent, RegisterState> {
         _showSnackMsg('Incorrect email format', emit: emit);
       }
     } catch (e) {
-      emit(state.copyWith(status: RegisterStatus.onError, error: e.toString()));
+      _showSnackMsg('sign up failed, try again', emit: emit);
     }
   }
 
@@ -84,7 +84,7 @@ class RegisterBloc extends Bloc<RegisterEvent, RegisterState> {
         }
       });
     } catch (e) {
-      emit(state.copyWith(status: RegisterStatus.onError, error: e.toString()));
+      _showSnackMsg(e.toString(), emit: emit);
     }
   }
 
@@ -98,6 +98,7 @@ class RegisterBloc extends Bloc<RegisterEvent, RegisterState> {
   void _showSnackMsg(String msg, {required Emitter<RegisterState> emit}) {
     emit(state.copyWith(
       status: RegisterStatus.showMessage,
+      isLoading: false,
       messageForSnackBar: msg,
     ));
     emit(state.copyWith(status: RegisterStatus.initial));
